@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kids Aura Player Proxy</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="player-container"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get('v');
+    const autoplay = params.get('autoplay') || '1';
+    const mute = params.get('mute') || '1';
+    
+    if (videoId) {
+      const container = document.getElementById('player-container');
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=${autoplay}&mute=${mute}&controls=0&loop=1&playlist=${videoId}&modestbranding=1&rel=0&showinfo=0`;
+      iframe.allow = "autoplay; encrypted-media";
+      container.appendChild(iframe);
+    }
+  </script>
+</body>
+</html>
